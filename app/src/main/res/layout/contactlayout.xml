@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f2f2f2">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#ffffff"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/projecttab">
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/person"
+            android:id="@+id/imageView310"
+            android:layout_weight="0"
+            android:layout_marginLeft="10dp"
+            />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0">
+
+            <TextView
+                android:text="Sample project-MBE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView610"
+
+                android:textColor="#000000"
+                android:textAlignment="gravity"
+                android:gravity="fill_vertical"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="0dp"/>
+
+            <TextView
+                android:text="TextViewdwedwed wedwedwed wedwedwedw w edwedwed we d w ed w ed w e dwe d w ed we d wed ew d wed "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView612"
+
+                android:textAlignment="gravity"
+                android:gravity="fill_vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="0dp"
+
+                android:maxLines="2"
+
+                 />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
