@@ -24,7 +24,7 @@ The messages should be grouped by the sender i.e. all the messages sent by one s
 <img width="292" alt="3" src="https://cloud.githubusercontent.com/assets/12602212/23356368/8c998e8e-fcff-11e6-8518-246bdf588715.png">
 <img width="292" alt="3" src="https://cloud.githubusercontent.com/assets/12602212/23356369/8cce92b4-fcff-11e6-8aae-30103d556ee0.png">
 <img width="292" alt="3" src="https://cloud.githubusercontent.com/assets/12602212/23356365/8c6d4c2a-fcff-11e6-8132-a458a049d0c6.png">
-<img width="292" alt="3" src="https://cloud.githubusercontent.com/assets/12602212/23356364/8c34e308-fcff-11e6-8273-4107011d79cf.png">
+<img width="292" alt="3" src="https://cloud.githubusercontent.com/assets/12602212/23357015/0a8cb68e-fd02-11e6-898f-13c268d2af29.png">
 
 
 
