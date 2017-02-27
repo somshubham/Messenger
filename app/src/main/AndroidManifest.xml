@@ -25,13 +25,11 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:parentActivityName="Messanger">
+            android:parentActivityName=".Messanger">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Messanger" />
-
         </activity>
-
 
         <receiver android:name=".SMSReceiver">
             <intent-filter>
@@ -39,9 +37,24 @@
             </intent-filter>
         </receiver>
 
-
-
-
+        <activity
+            android:name=".Main2Activity"
+            android:label="Grouped Sender"
+            android:parentActivityName=".Messanger"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.som.android.messanger.Messanger" />
+        </activity>
+        <activity
+            android:name=".Main3Activity"
+            android:label="Sender Messege"
+            android:parentActivityName=".Main2Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.som.android.messanger.Main2Activity" />
+        </activity>
     </application>
 
 </manifest>

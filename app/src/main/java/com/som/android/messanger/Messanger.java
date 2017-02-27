@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,7 +22,14 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.facebook.stetho.Stetho;
+
 import java.util.ArrayList;
+import java.util.List;
+
+import databaseHelper.DatabaseHandler;
+import databaseHelper.Model;
+import databaseHelper.Model2;
 
 public class Messanger extends AppCompatActivity {
 
@@ -39,64 +47,9 @@ Cursor c;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messanger);
+        Stetho.initializeWithDefaults(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-
-
-
-
-
-
-//
-//        int permissionCheck = ContextCompat.checkSelfPermission(Messanger.this,
-//                Manifest.permission.WRITE_CALENDAR);
-//
-//// Here, thisActivity is the current activity
-//        if (ContextCompat.checkSelfPermission(Messanger.this,
-//                Manifest.permission.READ_CONTACTS)
-//                != PackageManager.PERMISSION_GRANTED) {
-//
-//            // Should we show an explanation?
-//            if (ActivityCompat.shouldShowRequestPermissionRationale(Messanger.this,
-//                    Manifest.permission.READ_CONTACTS)) {
-//
-//                // Show an explanation to the user *asynchronously* -- don't block
-//                // this thread waiting for the user's response! After the user
-//                // sees the explanation, try again to request the permission.
-//
-//            } else {
-//
-//                // No explanation needed, we can request the permission.
-//
-//                ActivityCompat.requestPermissions(Messanger.this,
-//                        new String[]{Manifest.permission.READ_SMS},
-//                        MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-//
-//                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-//                // app-defined int constant. The callback method gets the
-//                // result of the request.
-//
-//
-//
-//
-//
-//
-//
-//            }
-//        }
-//
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -106,7 +59,7 @@ Cursor c;
             public void onClick(View view) {
 
 
-                Toast.makeText(CustomListView, "hi you want to send a msg?", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(CustomListView, "hi you want to send a msg?", Toast.LENGTH_SHORT).show();
 
                 Intent i=new Intent(Messanger.this,MainActivity.class);
 
@@ -127,7 +80,7 @@ Cursor c;
 
 
         CustomListView = this;
-
+//call to add  the sms from the inbox.........
         setListData();
         res =getResources();
         list=(ListView)findViewById(R.id.list);
@@ -193,11 +146,47 @@ Cursor c;
                     int size=c.getCount();
                     CustomListViewValuesArr.clear();
                     msg=new String[size];
+                   // DatabaseHandler db = new DatabaseHandler(Messanger.this);
+                    int SenderPresent=0;
+
+
+
+
+
                     while (c.moveToNext()) {
                         final ListModel sched = new ListModel();
                         sms1 += "From :" +c.getString(2)+"\n";
                         msg[o]=""+c.getString(2);
+                       // List<Model> movies1 = db.getAllMessage();
+                       // List<Model2> movies2 = db.getAllMessage2();
 
+//                        int sizecount=0;
+//                        for(Model m:movies1)
+//                        {
+//                            String number=m.getSenderNumber();
+//                            if(number.equals(c.getString(1)))
+//                            {
+//                                sizecount++;
+//                            }
+//                        }
+//
+//                        if(sizecount!=0)
+//                        {
+//                         Log.i("number","number is present in the database");
+//                        }
+//                        else
+//                        {
+//                          //  db.addMovie(new Movie(movieid,title,overview,vote,releasedate,poster,backdrop_image));
+//                            db.addMessage(new Model(c.getString(1)));
+//
+//
+//                        }
+                        
+
+
+
+
+                 //       db.addMessage2(new Model2(c.getString(1),c.getString(2)));
                         sched.setNumber(""+c.getString(1));
                         sched.setMessage("mmessage :"+msg[o]);
                         CustomListViewValuesArr.add(sched);
@@ -207,34 +196,6 @@ Cursor c;
                     adapter=new CustomAdapter(CustomListView, CustomListViewValuesArr,res);
 
                     list.setAdapter(adapter);
-
-
-//                    int i=0;
-//
-//                    CustomListViewValuesArr.clear();
-//                    int k=c.getCount();
-//
-//                    for(i=0;i<k;i++){
-//                        final ListModel sched = new ListModel();
-//                        // sms1 += "From :" +c.getString(2)+"\n";
-//                        /******* Firstly take data in model object ******/
-//                        sched.setNumber("977613597"+i);
-//
-//                        sched.setMessage("mmessage :"+msg[i]);
-//
-//                        /******** Take Model Object in ArrayList **********/
-//                        CustomListViewValuesArr.add(sched);
-//
-//                    }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -248,15 +209,16 @@ Cursor c;
 //
 
 
-                    Uri uriSMSURI = Uri.parse("content://sms/inbox");
-                    Cursor cur = getContentResolver().query(uriSMSURI, null, null, null,null);
-                    String sms = "";
-                   while (cur.moveToNext()) {
-                        sms += "From :" + cur.getString(2) + " : " + cur.getString(11)+""+cur.getString(12)+"\n";
-                    }
+//                    Uri uriSMSURI = Uri.parse("content://sms/inbox");
+//                    Cursor cur = getContentResolver().query(uriSMSURI, null, null, null,null);
+//                    String sms = "";
+//                   while (cur.moveToNext()) {
+//                        sms += "From :" + cur.getString(2) + " : " + cur.getString(11)+""+cur.getString(12)+"\n";
+//                    }
 
-
-                    Log.i("hisms",""+sms);
+                    AsyncT asyncT = new AsyncT();
+                    asyncT.execute("","");
+                 //   Log.i("hisms",""+sms);
 
                     Log.i("hello",":sdsdasd");
 
@@ -293,7 +255,94 @@ Cursor c;
 
 
 
+    class AsyncT extends AsyncTask<String , Void, String> {
 
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // loading = ProgressDialog.show(getActivity(), "Please Wait While loggingin",null, true, true);
+        }
+        @Override
+        protected String doInBackground(String... params) {
+
+
+
+
+
+            Uri inboxURI = Uri.parse("content://sms/inbox");
+
+            String[] reqCols = new String[] { "_id", "address", "body" };
+            ContentResolver cr = getContentResolver();
+            c = cr.query(inboxURI, reqCols, null, null, null);
+            int o=0;
+            String sms1 = "";
+            int size=c.getCount();
+          //  CustomListViewValuesArr.clear();
+            msg=new String[size];
+            DatabaseHandler db = new DatabaseHandler(Messanger.this);
+            int SenderPresent=0;
+
+
+
+
+
+            while (c.moveToNext()) {
+                final ListModel sched = new ListModel();
+                sms1 += "From :" +c.getString(2)+"\n";
+                msg[o]=""+c.getString(2);
+                List<Model> movies1 = db.getAllMessage();
+               // List<Model2> movies2 = db.getAllMessage2();
+
+                int sizecount=0;
+                for(Model m:movies1)
+                {
+                    String number=m.getSenderNumber();
+                    if(number.equals(c.getString(1)))
+                    {
+                        sizecount++;
+                    }
+                }
+
+                if(sizecount!=0)
+                {
+                    Log.i("number","number is present in the database");
+                }
+                else
+                {
+                    //  db.addMovie(new Movie(movieid,title,overview,vote,releasedate,poster,backdrop_image));
+                    db.addMessage(new Model(c.getString(1)));
+
+
+                }
+
+
+
+
+
+                db.addMessage2(new Model2(c.getString(1),c.getString(2)));
+               // sched.setNumber(""+c.getString(1));
+                //sched.setMessage("mmessage :"+msg[o]);
+              //  CustomListViewValuesArr.add(sched);
+                o++;
+            }
+
+          //  adapter=new CustomAdapter(CustomListView, CustomListViewValuesArr,res);
+
+           // list.setAdapter(adapter);
+
+
+
+
+
+
+
+
+
+
+
+
+            return null;
+        }
+    }
 
 
 
@@ -409,6 +458,18 @@ Cursor c;
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if (id == R.id.groupbysender) {
+
+
+            Intent intent=new Intent(Messanger.this,Main2Activity.class);
+            startActivity(intent);
+
+
+
+
             return true;
         }
 

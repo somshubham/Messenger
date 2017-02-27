@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.facebook.stetho.Stetho;
+
 public class MainActivity extends AppCompatActivity {
     EditText number;
     EditText msg;
@@ -19,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Stetho.initializeWithDefaults(this);
         Button b=(Button)findViewById(R.id.button2);
          number=(EditText)findViewById(R.id.editText2);
          msg=(EditText)findViewById(R.id.editText4);
